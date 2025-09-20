@@ -1,0 +1,12 @@
+src
+node_modules
+.env
+.env.local
+.git
+.gitignore
+*.log
+*.md
+tsconfig.json
+nodemon.json
+bootstrap.cjs
+bootstrap.mjs
