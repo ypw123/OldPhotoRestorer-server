@@ -1,13 +1,17 @@
-const { buildServer } = require('../dist/server.js');
-
 let app;
+async function getApp() {
+  if (!app) {
+    const mod = await import('../dist/server.js');
+    const buildServer = mod.buildServer || mod.default?.buildServer || mod.default;
+    app = await buildServer();
+    await app.ready();
+  }
+  return app;
+}
 
 module.exports = async function handler(req, res) {
   try {
-    if (!app) {
-      app = await buildServer();
-      await app.ready();
-    }
+    const fastify = await getApp();
     const response = await app.inject({
       method: req.method,
       url: req.url,
