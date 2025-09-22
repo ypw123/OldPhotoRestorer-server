@@ -5,8 +5,9 @@ node_modules
 .git
 .gitignore
 *.log
-*.md
-tsconfig.json
 nodemon.json
 bootstrap.cjs
 bootstrap.mjs
+README.md
+VERCEL_DEPLOYMENT.md
+api.md
