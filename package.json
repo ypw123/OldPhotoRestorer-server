@@ -2,7 +2,6 @@
   "name": "old-photo-restorer-server",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "concurrently -n tsc,app -c yellow,cyan \"tsc -p tsconfig.json -w\" \"nodemon\"",
     "build": "tsc -p tsconfig.json",
