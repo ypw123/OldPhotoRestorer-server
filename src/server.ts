@@ -18,20 +18,20 @@ async function buildServer() {
   return app;
 }
 
-async function start() {
-  console.log('[bootstrap] building server...');
-  const app = await buildServer();
-  const { PORT, HOST } = app.config;
-  try {
-    await app.listen({ port: PORT, host: HOST });
-    app.log.info(`Server listening on http://${HOST}:${PORT}`);
-  } catch (err) {
-    app.log.error(err);
-    process.exit(1);
-  }
+// 本地开发启动（在直接运行 node dist/server.js 时）
+if (require.main === module) {
+  (async () => {
+    console.log('[bootstrap] building server (standalone)...');
+    const app = await buildServer();
+    const { PORT, HOST } = app.config;
+    try {
+      await app.listen({ port: PORT, host: HOST });
+      app.log.info(`Server listening on http://${HOST}:${PORT}`);
+    } catch (err) {
+      app.log.error(err);
+      process.exit(1);
+    }
+  })();
 }
-
-// 直接启动（打包后 Windows 路径差异会导致条件判断失败）
-start();
 
 export { buildServer };
