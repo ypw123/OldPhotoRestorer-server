@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "concurrently -n tsc,app -c yellow,cyan \"tsc -p tsconfig.json -w\" \"nodemon\"",
     "build": "tsc -p tsconfig.json",
+    "postinstall": "npm run build",
     "start": "node dist/server.js",
     "lint": "eslint . --ext .ts",
     "check": "tsc --noEmit"
